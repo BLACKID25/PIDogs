@@ -13,7 +13,6 @@ const postDogs = async (res, req) =>{
             await data.addTepm(temprela)
             return res.status(200).json("Creado correctamente en Dogs")
 
-        
     } catch (error) {
         return res.status(400).json ({message: error.message})
     }

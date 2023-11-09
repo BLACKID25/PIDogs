@@ -1,4 +1,4 @@
-const { dogsByName } = require("../controller/CallGetDogsByName")
+const { dogsByName } = require("../controller")
 
 
 const dogName = async(req, res) =>{

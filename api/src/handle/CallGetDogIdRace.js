@@ -1,4 +1,4 @@
-const {dogsByIdRace} = require("../controller/CallGetDogsByIdRace")
+const {dogsByIdRace} = require("../controller")
 
 
 

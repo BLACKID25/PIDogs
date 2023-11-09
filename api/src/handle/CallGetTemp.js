@@ -1,4 +1,4 @@
-const {getTemp} = require ("../controller/CallGetTemperament")
+const {getTemp} = require ("../controller")
 
 const getTemperaments = async (req, res) =>{
     try {

@@ -1,6 +1,6 @@
 const {Dog, Temp} = require("../db")
 const axios = require("axios")
-const {dataApi} = require("../help")
+const dataApi = require("../help/dataApi")
 const {KEY_API_DOGS} = process.env
 
 const url = `https://api.thedogapi.com/v1/breeds?api_key=${KEY_API_DOGS}`
