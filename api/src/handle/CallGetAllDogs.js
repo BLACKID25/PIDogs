@@ -1,21 +1,22 @@
-const allDogsApi = require("../controller");
-const allDogsBD = require("../controller");
+const { allDogsApi } = require("../controller");
+const { allDogsBD } = require("../controller");
 
 
-const allDogs = async () => {
-        try {
+const allDogs = async (req, res) => {
+        try {  
+          console.log("aqui estoy")
             const dogsFromApi = await allDogsApi()  //! obtenemos los datos de la API
             const dogsFromDb  = await allDogsBD()   //! obtenemos los datos de la Base de DAtos
 
-            const alldog = dogsFromDb 
-            ? [  //! creamos un array con toda la informacion 
+            const alldog =
+              [  //! creamos un array con toda la informacion 
                 ...dogsFromApi,
                 ...dogsFromDb
-              ] 
-            : dogsFromApi
-            return res.status(200).json(alldog)  
+              ]
+          
+            res.json(alldog)  
         } catch (error) {
-                 res.status(400).json({message:error.message})
+                 return res.status(400).json({error:"No tenemos la informacion completa"})
             }
 }
-module.exports = allDogs;
+module.exports =   allDogs

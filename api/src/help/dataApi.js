@@ -1,12 +1,12 @@
-function dataApi(ele) {
+function dataApi(data) {
     const newobjedogs = {
-      id: ele.id,
-      name: ele.name,
-      height: ele.height.metric,
-      weight: ele.weight.metric,
-      life_span: ele.life_span,
-      image: ele.image.url,
-      temperament: ele.temperament ? ele.temperament.split(", ") : [],
+      id: data.id,
+      name: data.name,
+      height: data.height.metric,
+      weight: data.weight.metric,
+      life_span: data.life_span,
+      image: data.image.url,
+      temperament: data.temperament ? data.temperament.split(", ") : [],
       created: false,
     };
     return newobjedogs;

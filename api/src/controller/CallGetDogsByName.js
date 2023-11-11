@@ -11,36 +11,37 @@ const url = `https://api.thedogapi.com/v1/breeds?api_key=${KEY_API_DOGS}`
 
 const dogsByName = async (name) => {
     try {
-    
-            //!busqueda en la BD
+        
+        //!busqueda en la BD
         const dogDB = await Dog.findAll({
             where:{
                 name:{[Op.substring]:name}
             },
-            include: Temp
+            include: Temp,
         })
         if(dogDB.length){
             dogDB = dogDB.map((ele)=>dataDB(ele))
         }
         
         //!busqueda en la API
-
-        const {data}= await axios.getAdapter(url)  //! extraemos la data de la APi 
+        
+        const { data }= await axios.get(url)  //! extraemos la data de la APi 
         const resuldogapi = data.filter((ele)=>    // filtramos para trernos el nombre
-            ele.name.toLowerCase().includes(name.toLowerCase())
+        ele.name.toLowerCase().includes(name.toLowerCase())
         )
-        if(resuldogapi.length){
+        console.log(resuldogapi)
+        if(resuldogapi){
             resuldogapi = resuldogapi.map((ele) => dataApi(ele))
         }
-
+        
         const dogname = [
             ...dogDB,
             ...resuldogapi
         ]
-        if (dogname.length)
-        return dogname;
-        else 
+        if (!dogname.length)
             throw new Error('No hay resultados')
+         else 
+            return dogname;
 
     } catch (error) {
         throw new Error('No hay resultados')
