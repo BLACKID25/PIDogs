@@ -7,30 +7,40 @@ const url = `https://api.thedogapi.com/v1/breeds?api_key=${KEY_API_DOGS}`
 
 const getTemp = async() =>{
     try {
-        if (url){
-            const resapitemp = await axios.get(url)
-            const api = resapitemp.data.results
-            const tempApi = api.map((temp) => temp.name)
-
-            const createpromises = tempApi.map((temp)=>{
-                return Temp.finOrCreate({
-                   where: {
-                    name: temp
-                   }
-                })
+        console.log("PASO A GETTEMP")
+       
+            const { data } = await axios.get(url)
+            //const api = resapitemp.data.results
+            let newArrayTemp = []
+            data.forEach(ele  => {
+                if (ele.temperament){
+                    //console.log("dentro del IF")
+                    const newtemp = ele.temperament.split (', ')
+                    newtemp.forEach(tempera=>{
+                        if(!newArrayTemp.includes(tempera)){
+                            newArrayTemp.push(tempera)
+                        }
+                    })
+                }
             })
-            await Promise.all(createpromises)
-            return tempApi
-        } else{
-            const res = await Temp.findAll()
-            const tempdb = res.map(temp => temp.name)
-          return tempdb
-        }
+
+            const tempDb = await Promise.all(newArrayTemp.map(async temperament => {
+                const [tempe, created] = await Temp.findOrCreate(
+                    {
+                        where:
+                        { name: temperament } ,
+                        default : {name:temperament}
+                
+            })
+            return tempe
+            }))
+           return tempDb
 
         
     } catch (error) {
-        throw new Error('No hay resultados')
+        throw new Error('No hay resultados de temperamentos')
         
     }
 }
+
 module.exports = getTemp

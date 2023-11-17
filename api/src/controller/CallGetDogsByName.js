@@ -10,18 +10,52 @@ const {KEY_API_DOGS} = process.env
 const url = `https://api.thedogapi.com/v1/breeds?api_key=${KEY_API_DOGS}`
 
 const dogsByName = async (name) => {
+
+
+    // const { data } = await axios.get(url);
+
+    // const resultDogApi = data.filter((ele) =>
+    //   ele.name.toLowerCase().includes(name.toLowerCase())
+    // );
+    
+    // console.log(resultDogApi);
+    
+    // let processedData;
+
+    // if (resultDogApi && resultDogApi.length > 0) {
+    //     resultDogApi = resultDogApi.map((ele) => dataApi(ele))
+    // } else {
+    //   throw new Error('No hay resultados');
+    // }
+    
+    // const dogname = [...Dog, ...processedData];
+    
+    // if (!dogname.length) {
+    //   throw new Error('No hay resultados');
+    // } else {
+    //   return dogname;
+    // }
+        console.log("Name que llega del handleName es:", name)
     try {
         
         //!busqueda en la BD
         const dogDB = await Dog.findAll({
             where:{
-                name:{[Op.substring]:name}
+                name
             },
-            include: Temp,
+            include:[
+                { 
+                    model:Temp,
+                    attributes: [  //! incluimos solo estos atributos
+                        'id', 
+                        'name'
+                    ],
+                    through: { attributes: [] }
+                }
+            ]
         })
-        if(dogDB.length){
-            dogDB = dogDB.map((ele)=>dataDB(ele))
-        }
+        if (dogDB.length) 
+        return dogDB
         
         //!busqueda en la API
         
@@ -29,14 +63,20 @@ const dogsByName = async (name) => {
         const resuldogapi = data.filter((ele)=>    // filtramos para trernos el nombre
         ele.name.toLowerCase().includes(name.toLowerCase())
         )
-        console.log(resuldogapi)
-        if(resuldogapi){
-            resuldogapi = resuldogapi.map((ele) => dataApi(ele))
-        }
+        //console.log(resuldogapi)
+        let resuldogapi2
+        
+        if (resuldogapi && resuldogapi.length > 0) {
+            resuldogapi2 = resuldogapi.map((ele) => dataApi(ele))
+            
+            console.log(resuldogapi2)
+            } else {
+              throw new Error('No hay resultados');
+            }
         
         const dogname = [
             ...dogDB,
-            ...resuldogapi
+            ...resuldogapi2
         ]
         if (!dogname.length)
             throw new Error('No hay resultados')

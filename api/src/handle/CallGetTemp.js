@@ -2,6 +2,8 @@ const {getTemp} = require ("../controller")
 
 const getTemperaments = async (req, res) =>{
     try {
+
+        console.log("ESTO EN GETTEMPERAMETS")
         let temperaments = await getTemp() 
         
         if(temperaments.length === 0){

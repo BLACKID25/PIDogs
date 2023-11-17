@@ -11,14 +11,28 @@ const allDogsBD = async () => {
                         'id', 
                         'name'
                     ],
+                    through: { attributes: [] }
                 }
             ]
         })
-    const resuldog = dogsdb.map((data)=> dataDB(data))
-         return resuldog.reverse();
-    }catch(error){
-        throw new Error(error.message)
-    }
+
+        return dogsdb.map((ele) => ele.toJSON());
+} catch (error) {
+  return error
 }
+
+} 
+    // // const resuldog = dogsdb.map((data)=>  dataDB(data))
+    // //      return resuldog.reverse();
+    // }catch(error){
+    //     throw new Error(error.message)
+    // }
+//}
 module.exports=allDogsBD;
 
+// return pokemons.map((pokemon) => pokemon.toJSON());
+// } catch (error) {
+//   return error
+// }
+
+// } 

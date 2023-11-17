@@ -4,9 +4,11 @@ const { allDogsBD } = require("../controller");
 
 const allDogs = async (req, res) => {
         try {  
-          console.log("aqui estoy")
+          console.log("PASE POR ALLDOGS")
             const dogsFromApi = await allDogsApi()  //! obtenemos los datos de la API
+            console.log(dogsFromApi)
             const dogsFromDb  = await allDogsBD()   //! obtenemos los datos de la Base de DAtos
+            console.log(dogsFromDb)
 
             const alldog =
               [  //! creamos un array con toda la informacion 

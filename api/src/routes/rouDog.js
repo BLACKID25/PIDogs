@@ -12,9 +12,9 @@ const {
 
 // //! creamos las rutas 
 
-//rouDog.get("/dogs", allDogs)
-rouDog.get("/dogs/:id", dogIdRace)
-rouDog.get('/dogs/', dogName)
-rouDog.post("/dogs", postDogs)
+rouDog.get("", allDogs)   // ESTA OK
+rouDog.get("/:idRaza", dogIdRace)  // ESTA OK
+rouDog.get("/find/name", dogName) // ESTA OK
+rouDog.post("/", postDogs)
 
 module.exports = rouDog

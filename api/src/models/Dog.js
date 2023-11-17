@@ -14,38 +14,38 @@ module.exports = (sequelize) => {
     image: {               //! IMAGEN              
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        isUrl: true,
-      },
+      // validate: {
+      //   isUrl: true,
+      // },
     },
     name: {               //! NOMBRE
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        is: /^[A-Za-z\s]*$/,
-      },
+      // validate: {
+      //   is: /^[A-Za-z\s]*$/,
+      // },
       unique: true,
     },
     height:{              //! ALTURA
       type: DataTypes.STRING,
       allowNull:false,
-      validate: {
-        is: /^[A-Za-z\s]*$/,
-      },
+      // validate: {
+      //   is: /^[A-Za-z\s]*$/,
+      // },
     },
     weight:{            //! PESO
       type: DataTypes.STRING,
       allowNull:false,
-      validate: {
-        is: /^[A-Za-z\s]*$/,
-      },
+      // validate: {
+      //   is: /^[A-Za-z\s]*$/,
+      // },
     },
     life_span: {        //! AÑOS DE VIDA
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        is: /^\d+\s*-\s*\d+\s*years$/,
-      },
+      // validate: {
+      //   is: /^\d+\s*-\s*\d+\s+years$/,
+      // },
     },
   });
 };

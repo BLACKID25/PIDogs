@@ -1,13 +1,18 @@
 const {dogsByIdRace} = require("../controller")
+const dogNames = require("./CallGetDogName")
 
 
 
 const dogIdRace = async (req, res) => {
     try {
+        
+        console.log("PASO POR DOGIDRACE")
+        const { idRaza  } = req.params  //! id requerido por params
+       // console.log("Este es el Id:", id)
 
-        const { id } = req.params  //! id requerido por params
-       // console.log("el Id recibido es el", id)
-        const dogidrace = await dogsByIdRace(id)
+       
+        console.log("el Id recibido es el", idRaza)
+        const dogidrace = await dogsByIdRace(idRaza)
        // console.log("Esto es dogidrace")
        // console.log(dogidrace)
         if(dogidrace) res.status(200).json(dogidrace)
