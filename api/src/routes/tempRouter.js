@@ -7,7 +7,7 @@ const {
 
 //! creamos las rutas 
 
-tempRouter.get("/", getTemperaments) // ESTA OK
+tempRouter.get("", getTemperaments) // ESTA OK
 
 
 module.exports = tempRouter
