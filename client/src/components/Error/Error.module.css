@@ -1,0 +1,62 @@
+.mainError {
+  height: 100%;
+  font-family: "Custom";
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #effcff;
+  background-image: url("../../content/backgroundLanding.svg");
+  overflow: hidden;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 1em;
+  background-color: #c9e3ec;
+  padding-top: 8vh;
+  padding-bottom: 6vh;
+  box-shadow: -1px 2px 136px -50px rgba(0, 0, 0, 0.75);
+}
+
+.shadowHelper {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  left: 50%;
+  top: 50%;
+  box-shadow: -42px -104px 300px 200px rgba(0, 0, 0, 0.2);
+}
+
+.content img {
+  z-index: 1;
+  width: 50%;
+  height: 50vh;
+}
+
+.content a {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  width: 11em;
+  height: 4em;
+  margin: 2em;
+  text-decoration: none;
+  border: 3px black solid;
+  border-radius: 5em;
+
+  &:hover {
+    background-color: rgb(47, 144, 255);
+  }
+  &:visited {
+    color: inherit;
+  }
+}
+
+.content a p {
+  margin-top: 1vh;
+}

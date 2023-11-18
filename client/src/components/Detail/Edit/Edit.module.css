@@ -1,0 +1,105 @@
+@font-face {
+  font-family: "Custom";
+  src: url("../../content/Jellee-Bold.woff");
+}
+
+.editMain {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  height: 30%;
+  align-self: center;
+  background-color: #c9e3ec;
+  border-radius: 1em;
+  box-shadow: 0px 2px 44px 7px rgba(0, 0, 0, 0.75);
+}
+
+.editMain h1,
+label {
+  font-family: "Custom";
+}
+
+.editMain h1 {
+  margin-bottom: 1.2em;
+  margin-top: 1em;
+}
+
+.editMain p {
+  margin: 0;
+  font-size: small;
+  height: 1.5em;
+  color: gray;
+}
+
+.numberInput {
+  display: flex;
+  flex-direction: row;
+  gap: 3em;
+  justify-content: center;
+}
+
+.numberInput input {
+  width: 10%;
+  border-radius: 1em;
+  height: 1.5em;
+  border: 2px solid black;
+  margin-bottom: 0.7em;
+  text-align: center;
+  box-shadow: inset 0px 2px 16px 0px rgba(0, 0, 0, 0.3);
+}
+
+.input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.exit {
+  align-self: flex-end;
+  position: absolute;
+  height: 2em;
+  width: 2em;
+  margin-top: 0.5em;
+  margin-right: 0.5em;
+  background: url("../../../content/cancelX.svg") no-repeat;
+  background-size: contain;
+  &:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+  }
+}
+
+.input button {
+  width: 20%;
+  height: 3vh;
+  margin-top: 2vh;
+  background-color: inherit;
+  border: 2px solid;
+  border-radius: 2em;
+}
+
+.input button:enabled {
+  border: 2px solid black;
+  &:hover {
+    transform: scale(1.05);
+    background-color: rgb(47, 144, 255);
+    cursor: pointer;
+    box-shadow: -1px 0px 14px -5px rgba(0, 0, 0, 0.75);
+  }
+}
+
+.textInput {
+  display: flex;
+  flex-direction: row;
+  gap: 3em;
+}
+
+.textInput input {
+  width: 15em;
+  padding-left: 1em;
+  border-radius: 1em;
+  height: 1.5em;
+  border: 2px solid black;
+  box-shadow: inset 0px 2px 16px 0px rgba(0, 0, 0, 0.3);
+}

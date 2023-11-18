@@ -1,0 +1,212 @@
+@font-face {
+  font-family: "Custom";
+  src: url("../../content/Jellee-Bold.woff");
+}
+
+.mainDetail {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #effcff;
+  background-image: url("../../content/backgroundLanding.svg");
+}
+
+.wideContainer {
+  display: flex;
+  flex-direction: row;
+  width: 85%;
+  height: 70%;
+  background-color: white;
+  border-radius: 2em;
+  box-shadow: 0px 1px 58px -16px rgba(0, 0, 0, 0.75);
+  z-index: 2;
+}
+
+.stretchContainer img,
+.wideContainer img {
+  width: 55%;
+  border-radius: 2em 0 0 2em;
+  box-shadow: 4px 0px 13px -1px rgba(0, 0, 0, 0.22);
+}
+
+.stretchContainer {
+  display: flex;
+  flex-direction: row;
+  width: 70%;
+  height: 85%;
+  background-color: white;
+  border-radius: 2em;
+  box-shadow: 0px 1px 58px -16px rgba(0, 0, 0, 0.75);
+  z-index: 2;
+}
+
+.stretchContainer .separator {
+  margin-bottom: 13vh;
+}
+
+.separator {
+  margin-top: 7vh;
+  margin-bottom: 9vh;
+  opacity: 0.5;
+}
+
+.stretchContainer img {
+  width: 55%;
+}
+
+.infoContainer {
+  padding: 3vw;
+  width: 45%;
+}
+
+.infoContainer h1 {
+  font-size: 5vh;
+  font-family: "Custom";
+}
+.infoContainer h4 {
+  margin-bottom: 4vh;
+  font-size: 2vh;
+}
+
+.infoContainer h3 {
+  opacity: 0.5;
+  font-weight: 600;
+  font-family: "Custom";
+}
+
+.infoContainer h5 {
+  font-weight: 100;
+  opacity: 0.5;
+  font-size: 1.2vh;
+}
+
+.stretchContainer .backButton {
+  position: absolute;
+  top: 10%;
+  left: 81.4%;
+  justify-self: center;
+  height: 4vh;
+  width: 2.25vw;
+  background-image: url("../../content/back.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.wideContainer .backButton {
+  position: absolute;
+  top: 17%;
+  left: 89.2%;
+  justify-self: center;
+  height: 4vh;
+  width: 2.25vw;
+  background-image: url("../../content/back.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.backButton:hover,
+.googleSearch:hover,
+.deleteDog:hover {
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+.wideContainer .googleSearch {
+  position: fixed;
+  top: 78.5%;
+  left: 89.2%;
+  justify-self: center;
+  height: 4vh;
+  width: 2.25vw;
+  background-image: url("../../content/SearchGlobe.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.stretchContainer .googleSearch {
+  position: fixed;
+  top: 85%;
+  left: 81.4%;
+  justify-self: center;
+  height: 4vh;
+  width: 2.25vw;
+  background-image: url("../../content/SearchGlobe.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.wideContainer .deleteDog {
+  position: fixed;
+  top: 78.5%;
+  left: 89.2%;
+  justify-self: center;
+  height: 4vh;
+  width: 2.25vw;
+  background-image: url("../../content/delete.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.stretchContainer .deleteDog {
+  position: fixed;
+  top: 85%;
+  left: 81.4%;
+  justify-self: center;
+  height: 4vh;
+  width: 2.25vw;
+  background-image: url("../../content/delete.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.wideDog {
+  position: fixed;
+  width: 10%;
+  top: 2%;
+  z-index: 1;
+  box-shadow: 0;
+}
+
+.stretchDog {
+  position: fixed;
+  width: 15%;
+  top: 50%;
+  left: 80%;
+  z-index: 1;
+  box-shadow: 0;
+}
+
+.editionContainer {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.473);
+  border-radius: 2em;
+  justify-content: center;
+}
+
+.stretchContainer .editionContainer {
+  height: 85%;
+  width: 70%;
+}
+
+.wideContainer .editionContainer {
+  height: 70%;
+  width: 85%;
+}
+
+.editingButtons {
+  width: 1.2em;
+  height: 1.2em;
+  background: url("../../content/pencil.svg") no-repeat;
+  background-size: contain;
+  margin-left: 0.3em;
+  border: 0;
+  background-color: inherit;
+  &:hover {
+    transform: scale(1.2);
+    cursor: pointer;
+  }
+}

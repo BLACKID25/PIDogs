@@ -1,0 +1,49 @@
+.filterContainer {
+  height: 3rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+  left: 55px;
+  --arrow-normal: url("../../content/arrowDown.svg");
+}
+
+.filterContainer select {
+  height: 2em;
+  font-family: "Custom";
+  appearance: none;
+  border: 0;
+  outline: 0;
+  background-color: inherit;
+  color: black;
+  border-radius: 2em;
+  padding-left: 1em;
+  box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  background: var(--arrow-normal) no-repeat;
+  background-position: 90% 50%;
+  background-size: 10%;
+  &::-ms-expand {
+    display: none;
+  }
+  &:focus {
+    outline: none;
+  }
+}
+
+.filterContainer option {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: medium;
+}
+
+.name {
+  position: relative;
+  right: 2em;
+  width: 10em;
+}
+
+.origin {
+  position: relative;
+  left: 2em;
+  width: 12em;
+}

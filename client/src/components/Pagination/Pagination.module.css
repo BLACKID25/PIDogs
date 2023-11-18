@@ -1,0 +1,122 @@
+@font-face {
+  font-family: "Custom";
+  src: url("../../content/Jellee-Bold.woff");
+}
+
+.pageContainer {
+  display: flex;
+  flex-direction: row;
+  width: 70%;
+  height: 2rem;
+  justify-content: center;
+  --arrow-normal: url("../../content/arrowDown.svg");
+  align-self: center;
+}
+
+.postSelector {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  left: 78%;
+  height: 2rem;
+  align-items: center;
+  gap: 2rem;
+  width: 15%;
+}
+
+.postSelector p {
+  margin: 0;
+  height: 1.5rem;
+  width: 100%;
+  font-family: "Custom";
+}
+
+.postSelector select {
+  height: 100%;
+  font-family: "Custom";
+  appearance: none;
+  border: 0;
+  outline: 0;
+  width: 5em;
+  background-color: inherit;
+  color: black;
+  border-radius: 2em;
+  padding-left: 1em;
+  box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  background: var(--arrow-normal) no-repeat;
+  background-position: 70% 50%;
+  background-size: 20%;
+  &::-ms-expand {
+    display: none;
+  }
+  &:focus {
+    outline: none;
+  }
+}
+
+.postSelector option {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: medium;
+}
+
+.Pages {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  height: 2rem;
+  left: 45%;
+  gap: 1em;
+}
+
+.Pages button {
+  width: 2rem;
+  background-color: inherit;
+  border: 2.5px black solid;
+  border-radius: 50%;
+  &:hover {
+    background-color: rgb(47, 144, 255);
+    cursor: pointer;
+  }
+  font-family: "Custom";
+}
+
+.middlepages {
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+}
+
+.middlepages p {
+  margin: 0;
+  font-weight: bold;
+}
+
+.prev,
+.next {
+  height: 2rem;
+  width: 2rem;
+  background: url("../../content/prev-next.svg") no-repeat;
+  background-size: contain;
+  &:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+  }
+}
+
+.prev {
+  transform: scaleX(-1);
+  &:hover {
+    transform: scaleX(-1) scale(1.05);
+  }
+}
+
+.current {
+  margin: 0;
+  position: absolute;
+  left: 40%;
+  align-self: center;
+  font-family: "Custom";
+  color: rgb(70, 70, 70);
+  /* font-size: small; */
+}
