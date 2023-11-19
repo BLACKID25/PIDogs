@@ -3,6 +3,7 @@ import StyledCard from "./DogCard.module.css";
 import weightIMG from "../../content/kg-weight.svg";
 
 export default function DogCard(props) {
+  console.log(props.dog.id)
   function handleError() {
     const image = document.getElementById("mainIMG");
     image.src =
@@ -33,3 +34,5 @@ export default function DogCard(props) {
     </div>
   );
 }
+
+

@@ -56,68 +56,68 @@ export default function reducer(state = initialState, action) {
         filteredDogs: [...result],
       };
 
-    case FILTER_DOGS:
-      const { filter, type, secondFilter } = payload;
-      let filtered = [];
-      if (!secondFilter) {
-        if (type === "origin") {
-          if (filter === "All") {
-            filtered = state.allDogs;
+      case FILTER_DOGS:
+        const { filter, type, secondFilter } = payload;
+        let filtered = [];
+        if (!secondFilter) {
+          if (type === "origin") {
+            if (filter === "All") {
+              filtered = state.allDogs;
+            }
+            if (filter === "Created") {
+              filtered = state.allDogs.filter((dog) => dog.created);
+            }
+            if (filter === "Listed") {
+              filtered = state.allDogs.filter((dog) => !dog.created);
+            }
           }
-          if (filter === "Created") {
-            filtered = state.allDogs.filter((dog) => dog.created);
+          if (type === "temperaments") {
+            if (filter === "All") filtered = state.allDogs;
+            else {
+              filtered = state.allDogs.filter((dog) =>
+                dog.temperament?.includes(filter)
+              );
+            }
           }
-          if (filter === "Listed") {
-            filtered = state.allDogs.filter((dog) => !dog.created);
-          }
-        }
-        if (type === "temperaments") {
-          if (filter === "All") filtered = state.allDogs;
-          else {
-            filtered = state.allDogs.filter((dog) =>
-              dog.temperament.includes(filter)
+        } else {
+          if (type === "origin") {
+            let firstFilter = state.allDogs.filter((dog) =>
+              dog.temperament?.includes(secondFilter)
             );
+            if (filter === "All") {
+              filtered = firstFilter;
+            }
+            if (filter === "Created") {
+              filtered = firstFilter.filter((dog) => dog.created);
+            }
+            if (filter === "Listed") {
+              filtered = firstFilter.filter((dog) => !dog.created);
+            }
+          }
+          if (type === "temperaments") {
+            let firstFilter = [];
+            if (secondFilter === "Created") {
+              firstFilter = state.allDogs.filter((dog) => dog.created);
+            }
+            if (secondFilter === "Listed") {
+              firstFilter = state.allDogs.filter((dog) => !dog.created);
+            }
+            if (filter === "All") filtered = firstFilter;
+            else {
+              filtered = firstFilter.filter((dog) =>
+                dog.temperament?.includes(filter)
+              );
+            }
           }
         }
-      } else {
-        if (type === "origin") {
-          let firstFilter = state.allDogs.filter((dog) =>
-            dog.temperament.includes(secondFilter)
-          );
-          if (filter === "All") {
-            filtered = firstFilter;
-          }
-          if (filter === "Created") {
-            filtered = firstFilter.filter((dog) => dog.created);
-          }
-          if (filter === "Listed") {
-            filtered = firstFilter.filter((dog) => !dog.created);
-          }
-        }
-        if (type === "temperaments") {
-          let firstFilter = [];
-          if (secondFilter === "Created") {
-            firstFilter = state.allDogs.filter((dog) => dog.created);
-          }
-          if (secondFilter === "Listed") {
-            firstFilter = state.allDogs.filter((dog) => !dog.created);
-          }
-          if (filter === "All") filtered = firstFilter;
-          else {
-            filtered = firstFilter.filter((dog) =>
-              dog.temperament.includes(filter)
-            );
-          }
-        }
-      }
-      return {
-        ...state,
-        filteredDogs: filtered,
-      };
+        return {
+          ...state,
+          filteredDogs: filtered,
+        };
     case UPDATE_TEMPERAMENTS:
       return {
         ...state,
-        temperaments: payload,
+        temperaments: action.payload,
       };
     default:
       return { ...state };

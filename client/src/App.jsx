@@ -8,7 +8,7 @@ import {
   CreateDog,
 } from "./components/index.components";
 import { useEffect } from "react";
-import { addAll, temperaments } from "./redux/actions";
+import { addAll, updateTemperaments } from "./redux/actions";
 import { useDispatch } from "react-redux";
 
 function App() {
@@ -17,7 +17,7 @@ function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(addAll());
-    dispatch(temperaments());
+    dispatch(updateTemperaments());
     // This on reload of home / other view, so filtering resets.
     if (sessionStorage.getItem("temperaments"))
       sessionStorage.setItem("temperaments", "All");
@@ -32,8 +32,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/home" element={<Home />} />
-          <Route path="/detail/:id" element={<Detail />} />
           <Route path="/createDog" element={<CreateDog />} />
+          <Route path="/detail/:id" element={<Detail />} />
           <Route path="*" element={<Error />} />
         </Routes>
       </div>

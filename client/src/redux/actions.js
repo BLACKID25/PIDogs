@@ -1,4 +1,9 @@
 import axios from "axios";
+import { throwError } from 'rxjs';
+import { from } from 'rxjs';
+import { switchMap, catchError } from 'rxjs/operators';
+
+
 
 import {
   ADD_ALL,
@@ -26,7 +31,7 @@ export function addAll() {
 }
 
 export function searchDog(name) {
-  const endpoint = `/dogs/name?="${name}"`;
+  const endpoint = `/dogs?name=${name}`;
   return async (dispatch) => {
     try {
       const { data } = await axios.get(endpoint);
@@ -39,15 +44,48 @@ export function searchDog(name) {
   };
 }
 
-export function temperaments() {
-  const endpoint = `/temperaments`;
-  return async (dispatch) => {
+// export function updateTemperaments() {
+//   const endpoint = "http://localhost:3001/temperaments";
+//   return async (dispatch) => {
+//     try {
+//       const { data } = await axios.get(endpoint);
+//       dispatch({ type: UPDATE_TEMPERAMENTS, payload: data });
+//     } catch (error) {
+//       const { data } = error.response;
+//       console.error("Error fetching temperaments:", data.message);
+//     }
+//   };
+// }
+
+
+// export function updateTemperaments() {
+//   const endpoint = `/temperaments`;
+//   return (dispatch) => {
+//      from(axios.get(endpoint))
+//        .pipe(
+//          switchMap(({ data }) => [
+//            { type: UPDATE_TEMPERAMENTS, payload: data },
+//          ]),
+//          catchError((error) => {
+//            const { data } = error.response;
+//            //console.error("Error fetching temperaments:", data.message);
+//            return throwError(error);
+//          }),
+//        )
+//        .subscribe((action) => dispatch(action));
+//   };
+//  }
+
+export function updateTemperaments(dogId) {
+  return async function (dispatch) {
     try {
-      const { data } = await axios.get(endpoint);
-      return dispatch({ type: UPDATE_TEMPERAMENTS, payload: data });
+      const response = await axios.get(`http://localhost:3001/temperaments`);
+      dispatch({
+        type: UPDATE_TEMPERAMENTS,
+        payload: response.data,
+      });
     } catch (error) {
-      const { data } = error.response;
-      alert(data.message);
+      console.error("Error fetching driver teams:", error);
     }
   };
 }
