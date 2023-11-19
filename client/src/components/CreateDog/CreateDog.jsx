@@ -1,7 +1,7 @@
 import style from "./CreateDog.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addAll } from "../../redux/actions";
+import { addAll, updateTemperaments } from "../../redux/actions";
 import { validateForm } from "../../helpers";
 import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -9,7 +9,7 @@ import bone from "../../content/bone.svg";
 import RefDog from "../../content/createDogRef.svg";
 
 export default function CreateDog() {
-  //LOCAL STATES
+  // LOCAL STATES
   const [dogToPost, setDogToPost] = useState({
     name: "",
     minHeight: "",
@@ -28,41 +28,39 @@ export default function CreateDog() {
     weight: "",
     life_span: "",
     image: "",
-    message: "Complete corrently all information to submit a dog",
+    message: "Complete correctly all information to submit a dog",
   });
 
   // GLOBAL STATES
-  const temperaments = useSelector((state) => state.temperaments);
   const allDogs = useSelector((state) => state.allDogs);
+  const temperaments = useSelector((state) => state.temperaments);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // HANDLERS
+  // EFFECT HOOK
+  useEffect(() => {
+    // Dispatch an action to fetch temperaments when the component mounts
+    dispatch(updateTemperaments());
+  }, [dispatch]);
 
+  // HANDLERS
   function handleChange(event) {
-    let temperamentList = [...dogToPost.temperament];
-    if (event.target.type === "checkbox") {
-      if (event.target.checked) {
-        temperamentList.push(event.target.value);
-      } else {
-        temperamentList = dogToPost.temperament.filter(
-          (temp) => temp != event.target.value
-        );
-      }
-      setDogToPost({ ...dogToPost, temperament: temperamentList });
-    } else {
-      setDogToPost({ ...dogToPost, [event.target.id]: event.target.value });
-      setErrors(
-        validateForm({ ...dogToPost, [event.target.id]: event.target.value })
-      );
-    }
+    setDogToPost({ ...dogToPost, [event.target.id]: event.target.value });
+    setErrors(
+      validateForm({ ...dogToPost, [event.target.id]: event.target.value })
+    );
+  }
+
+  function handleTemperamentChange(event) {
+    // For handling temperament selection
+    const selectedTemperament = event.target.value;
+    setDogToPost({ ...dogToPost, temperament: [...dogToPost.temperament, selectedTemperament] });
   }
 
   async function handleSubmit(event) {
     event.preventDefault();
 
-    //? Can become helper to reduce code.
     let newObj = {
       name: dogToPost.name,
       height: `${dogToPost.minHeight} - ${dogToPost.maxHeight}`,
@@ -71,10 +69,12 @@ export default function CreateDog() {
       image: `${dogToPost.image}`,
       temperament: dogToPost.temperament,
     };
+
     let existing = allDogs.find((dog) => dog.name === dogToPost.name);
+
     try {
       if (!existing) {
-        const response = await axios.post("/dogs", newObj);
+        const response = await axios.post("http://localhost:3001/dogs", newObj);
         dispatch(addAll());
         alert(response.data.message);
         setTimeout(() => {
@@ -87,8 +87,9 @@ export default function CreateDog() {
         );
         setErrors({
           ...errors,
-          name: "Name must contain only letters, no special characters nor numbers",
-          message: "Complete corrently all information to submit a dog",
+          name:
+            "Name must contain only letters, no special characters nor numbers",
+          message: "Complete correctly all information to submit a dog",
         });
       }
     } catch (error) {
@@ -96,16 +97,11 @@ export default function CreateDog() {
       alert(data.message);
     }
   }
-  // RENDER
 
+  // RENDER
   return (
     <div className={style.createMain}>
-      <img
-        src={bone}
-        alt=""
-        style={{ zIndex: `0` }}
-        className={style.boneImg}
-      />
+      <img src={bone} alt="" style={{ zIndex: `0` }} className={style.boneImg} />
       <img
         src={RefDog}
         alt=""
@@ -120,8 +116,23 @@ export default function CreateDog() {
       >
         <h1>Create your own dog!</h1>
 
+
+        <fieldset className={style.temperaments}>
+        <div className={style.tempContainer}>
+               <legend>Temperaments: </legend>
+              <select id="temperament" onChange={handleTemperamentChange} multiple>
+                {temperaments.map((temp, index) => (
+                  <option key={index} value={temp.name}>
+                    {temp.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+        </fieldset>
+
+
+
         <div className={style.contentContainer}>
-          {/**/}
           <div className={style.textInputs}>
             <div className={style.singleInput}>
               <label>Breed name: </label>
@@ -164,31 +175,8 @@ export default function CreateDog() {
             <p>{errors.image}</p>
           </div>
 
-          <fieldset className={style.temperaments}>
-            <legend>Temperaments: </legend>
-            <div className={style.tempContainer}>
-              {temperaments.map((temp, index) => (
-                <div key={index} className={style.checkContainer}>
-                  <input
-                    key={index}
-                    type="checkbox"
-                    value={temp}
-                    className={style.checkbox}
-                  />
-                  {temp}
-                </div>
-              ))}
-            </div>
-          </fieldset>
-          {dogToPost.temperament.length < 3 ? (
-            <p style={{ height: `1.5em`, alignSelf: `center` }}>
-              * At least 3 temperaments must be selected
-            </p>
-          ) : (
-            <p style={{ height: `1.5em` }}></p>
-          )}
           <div className={style.buttonCont}>
-            {errors.message || dogToPost.temperament.length < 3 ? (
+            {errors.message ? (
               <button type="submit" disabled>
                 Submit
               </button>

@@ -31,7 +31,7 @@ export function addAll() {
 }
 
 export function searchDog(name) {
-  const endpoint = `/dogs?name=${name}`;
+  const endpoint = `http://localhost:3001/dogs/find/name?name=${name}`;
   return async (dispatch) => {
     try {
       const { data } = await axios.get(endpoint);
