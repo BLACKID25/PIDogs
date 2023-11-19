@@ -3,7 +3,7 @@ import StyledCard from "./DogCard.module.css";
 import weightIMG from "../../content/kg-weight.svg";
 
 export default function DogCard(props) {
-  console.log(props.dog.id)
+ // console.log(props.dog)
   function handleError() {
     const image = document.getElementById("mainIMG");
     image.src =
@@ -23,7 +23,8 @@ export default function DogCard(props) {
         <div className={StyledCard.infoCont}>
           <Link to={`/detail/${props.dog.id}`}>
             <h1>{props.dog.name}</h1>
-            <p>{props.dog.temperament.join(", ")}</p>
+            <h1>{props.dog.id}</h1>
+            <p>{props.dog && props.dog.temperament ? props.dog.temperament.join(", ") : "No add temperamet"}</p>
             <div className={StyledCard.weight}>
               <img src={weightIMG} alt="" />
               <h2>{props.dog.weight}</h2>
@@ -34,5 +35,4 @@ export default function DogCard(props) {
     </div>
   );
 }
-
 
