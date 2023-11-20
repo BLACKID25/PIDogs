@@ -74,6 +74,11 @@
 //     </div>
 //   );
 // }
+
+
+
+//? CODIGO QUE FUNCIONA
+
 import style from "./Filters.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { filterDogs } from "../../redux/actions";
@@ -91,6 +96,8 @@ export default function Filters() {
   allDogs.forEach((dog) => {
     if (dog.created) anyCreated = true;
   });
+
+  let count = 1
 
   // Obtener nombres únicos de temperamentos
   const uniqueTemperaments = Array.from(new Set(temperaments.map(t => t.name)));
@@ -113,15 +120,21 @@ export default function Filters() {
         value = originFilter;
         name = "origin";
       }
+
+
       dispatch(filterDogs(value, name));
     } else if (event.target.name === "temperaments" && originFilter !== "All") {
-      dispatch(filterDogs(event.target.value, "temperaments", originFilter));
+      dispatch(filterDogs(event.target.value, "temperaments",  originFilter, sourceFilter));
     } else {
-      dispatch(filterDogs(event.target.value, "origin", temperamentFilter));
+      dispatch(filterDogs(event.target.value, "origin", temperamentFilter, sourceFilter));
     }
 
     sessionStorage.setItem(event.target.name, event.target.value);
   }
+
+
+
+
 
   // RENDER
   return (
@@ -133,8 +146,10 @@ export default function Filters() {
         className={style.name}
       >
         <option value="All">All Dogs</option>
-        {anyCreated ? <option value="Listed">Listed</option> : null}
-        {anyCreated ? <option value="Created">Created</option> : null}
+        
+
+        {anyCreated ? <option value="Listed">Api Dogs</option> : null}
+        {anyCreated ? <option value="Created">Db Dogs</option> : null}
       </select>
       <select
         onChange={handleChange}
@@ -143,6 +158,7 @@ export default function Filters() {
         className={style.origin}
       >
         <option value="All">All</option>
+        
         {uniqueTemperaments.map((temperament, index) => (
           <option key={index} value={temperament}>
             {temperament}
@@ -152,3 +168,4 @@ export default function Filters() {
     </div>
   );
 }
+

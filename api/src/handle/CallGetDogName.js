@@ -15,7 +15,7 @@ const dogNames = async(req, res) =>{
                 return res.status(401).json({message: "Debe ingresar un nombre de Dog"})
             }
             
-            console.log("datos despues del IF", dogName)
+           // console.log("datos despues del IF", dogName)
     //    //
     let data = await dogsByName(dogName); 
          console.log("data")

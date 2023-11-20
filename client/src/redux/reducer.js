@@ -5,6 +5,7 @@ import {
   SEARCH_DOG,
   SLICE_DOGS,
   UPDATE_TEMPERAMENTS,
+  //FILTER_BY_ORIGIN
 } from "./action-types";
 import { sliceArray, sortingByName, sortingByWeight } from "../helpers";
 
@@ -57,7 +58,7 @@ export default function reducer(state = initialState, action) {
       };
 
       case FILTER_DOGS:
-        const { filter, type, secondFilter } = payload;
+        const { filter, type, secondFilter, sourceFilter } = payload;
         let filtered = [];
         if (!secondFilter) {
           if (type === "origin") {
@@ -119,7 +120,11 @@ export default function reducer(state = initialState, action) {
         ...state,
         temperaments: action.payload,
       };
+
+      
     default:
       return { ...state };
-  }
+  };
+  
+  
 }

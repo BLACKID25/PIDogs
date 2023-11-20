@@ -17,8 +17,8 @@ const dogPost = async (dogData) => {
             name,
             height,
             weight,
-            life_span
-            //isDB: true,
+            life_span,
+            isDB: true,
         
     });
     

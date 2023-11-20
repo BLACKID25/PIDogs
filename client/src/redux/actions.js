@@ -12,6 +12,7 @@ import {
   SLICE_DOGS,
   FILTER_DOGS,
   UPDATE_TEMPERAMENTS,
+  //FILTER_BY_ORIGIN,
 } from "./action-types";
 
 export function addAll() {
@@ -38,8 +39,8 @@ export function searchDog(name) {
       if (data.message) return alert(data.message);
       return dispatch({ type: SEARCH_DOG, payload: data });
     } catch (error) {
-      const { data } = error.response;
-      alert(data.message);
+      //const { data } = error.response;
+      alert("DOG no existe");
     }
   };
 }
@@ -104,13 +105,22 @@ export function orderDogs(param, order) {
   };
 }
 
-export function filterDogs(filter, type, secondFilter) {
+export function filterDogs(filter, type, secondFilter, sourceFilter) {
   return {
     type: FILTER_DOGS,
     payload: {
       filter: filter,
       type: type,
       secondFilter: secondFilter,
+      sourceFilter: sourceFilter,
     },
   };
 }
+
+
+// export const filterByOrigin = (payload) =>{
+//   return {
+//     type: FILTER_BY_ORIGIN,
+//     payload
+//   }
+// }

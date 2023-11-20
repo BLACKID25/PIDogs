@@ -47,5 +47,10 @@ module.exports = (sequelize) => {
       //   is: /^\d+\s*-\s*\d+\s+years$/,
       // },
     },
+    created: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: true,
+      allowNull: false,
+    },
   });
 };
