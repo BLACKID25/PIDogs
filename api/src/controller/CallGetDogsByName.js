@@ -1,41 +1,14 @@
 require("dotenv").config()
 const axios = require("axios")
 const {Dog, Temp} = require("../db")
-const {Op} = require("sequelize")
-const dataDB = require("../help/dataDB")
 const dataApi = require("../help/dataApi")
-
 const {KEY_API_DOGS} = process.env
-
 const url = `https://api.thedogapi.com/v1/breeds?api_key=${KEY_API_DOGS}`
+
 
 const dogsByName = async (name) => {
 
-
-    // const { data } = await axios.get(url);
-
-    // const resultDogApi = data.filter((ele) =>
-    //   ele.name.toLowerCase().includes(name.toLowerCase())
-    // );
-    
-    // console.log(resultDogApi);
-    
-    // let processedData;
-
-    // if (resultDogApi && resultDogApi.length > 0) {
-    //     resultDogApi = resultDogApi.map((ele) => dataApi(ele))
-    // } else {
-    //   throw new Error('No hay resultados');
-    // }
-    
-    // const dogname = [...Dog, ...processedData];
-    
-    // if (!dogname.length) {
-    //   throw new Error('No hay resultados');
-    // } else {
-    //   return dogname;
-    // }
-        console.log("Name que llega del handleName es:", name)
+       // console.log("Name que llega del handleName es:", name)
     try {
         
         //!busqueda en la BD

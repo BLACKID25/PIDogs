@@ -1,9 +1,8 @@
-const {dogPost, relTemDog} = require("../controller")
-const {Dog, Temp} = require("../db")
+const {dogPost} = require("../controller")
 
 
 const postDogs = async (req, res) => {
-    console.log("ESTOY EN POSTDOGS")
+   // console.log("ESTOY EN POSTDOGS")
     const dogData = req.body;
     //console.log(dogData)
     try {

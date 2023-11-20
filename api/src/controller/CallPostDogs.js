@@ -1,49 +1,8 @@
-// const {Dog, Temp} = require("../db")
-// const { camelCasing } = require("../help/camelCassing")
-
-// const dogPost = async (dogData) => {
-//     console.log("YA PASE POR POSTDOGS y ESTOY EN DOGPOST")
-//     try {
-//         const { name, image, height, weight, life_span } = dogData
-//         if (!image || !name || !height || !weight || !life_span){ 
-//             throw Error('Faltan datos.')
-//         }
-//         const newDog = await Dog.findOrCreate({
-//             name,
-//             image,
-//             height,
-//             weight,
-//             life_span,
-//             isDB: true
-//         });
-//         console.log(dogData)
-        
-//             console.log("esto es el nuevo perro", newDog)
-//             if (dogData.temperaments && dogData.temperaments.length > 0) {
-//                 const temperaments = await Temp.findAll({
-//                     where: {
-//                         name: dogData.temperaments,
-//                     }
-//                 })
-//                 await newDog.setTemperaments(temperaments);
-//             }
-            
-//             return newDog;
-//         } catch (error) {
-//             throw error;
-//         }
-//     }
-    
-//     module.exports=  dogPost
-
-
-
-const { NOW } = require("sequelize");
 const { Dog, Temp } = require("../db");
-const { camelCasing } = require("../help/camelCassing");
+
 
 const dogPost = async (dogData) => {
-  console.log("YA PASE POR POSTDOGS y ESTOY EN DOGPOST");
+  //console.log("YA PASE POR POSTDOGS y ESTOY EN DOGPOST");
   try {
     const { name, image, height, weight, life_span } = dogData;
     if (!image || !name || !height || !weight || !life_span) {

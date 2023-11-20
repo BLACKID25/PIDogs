@@ -7,7 +7,7 @@ const url = `https://api.thedogapi.com/v1/breeds?api_key=${KEY_API_DOGS}`
 
 const getTemp = async() =>{
     try {
-        console.log("PASO A GETTEMP")
+       // console.log("PASO A GETTEMP")
        
             const { data } = await axios.get(url)
             //const api = resapitemp.data.results
