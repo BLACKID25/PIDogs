@@ -77,7 +77,23 @@ export function searchDog(name) {
 //   };
 //  }
 
-export function updateTemperaments(dogId) {
+//? actualmente funcionando 
+
+// export function updateTemperaments(dogId) {
+//   return async function (dispatch) {
+//     try {
+//       const response = await axios.get(`http://localhost:3001/temperaments`);
+//       dispatch({
+//         type: UPDATE_TEMPERAMENTS,
+//         payload: response.data,
+//       });
+//     } catch (error) {
+//       console.error("Error fetching driver teams:", error);
+//     }
+//   };
+// }
+
+export function updateTemperaments() {
   return async function (dispatch) {
     try {
       const response = await axios.get(`http://localhost:3001/temperaments`);
@@ -86,7 +102,7 @@ export function updateTemperaments(dogId) {
         payload: response.data,
       });
     } catch (error) {
-      console.error("Error fetching driver teams:", error);
+      console.error("Error fetching temperaments:", error);
     }
   };
 }
