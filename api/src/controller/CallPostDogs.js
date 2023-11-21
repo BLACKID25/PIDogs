@@ -27,13 +27,13 @@ const dogPost = async (dogData) => {
     //console.log("esto es el nuevo perro", newDog);
 
     if (dogData.temperament && dogData.temperament.length > 0) {
-      console.log("dentro if")
+     // console.log("dentro if")
       const temperaments = await Temp.findAll({
         where: {
             name: dogData.temperament
           },
         });
-      console.log(temperaments)
+     // console.log(temperaments)
       await newDog.addTemps(temperaments);
     }
     //console.log("esto es newdog con temperamento",newDog)

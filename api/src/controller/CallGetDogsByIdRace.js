@@ -8,15 +8,32 @@ const url = `https://api.thedogapi.com/v1/breeds?api_key=${KEY_API_DOGS}`
 
 const dogsByIdRace = async (id) => {
     try {
-       // console.log("estoy en dogsByIdRace con el Id numero",id)
-        if(id.includes("-")){   //! validamos si el ID contiene un -, si esta, este viene de la BD
-            res = await Dog.findOne({      // ! nos traemos la inf d ela BD
-                where: {
-                  id: id
-                },
-                include: Temp
-              })
-        res.dataValues.temperament = res.Temp.map((ele) => ele.name)
+      
+     
+        if (id.includes("-")){
+          const dogDb = await Dog.findByPk( id,
+             {include:[{ 
+              model: Temp, 
+              attributes: ["name"], 
+              through: { attributes: []}
+          }]
+      })
+  
+        const { name, image, height, weight, life_span, Temps,  } = dogDb.dataValues;
+        
+        const newDetailDog = {
+                id,
+                name, 
+                image,
+                height,
+                weight, 
+                life_span, 
+                Temps: Temps?.map((temp) => temp.name),
+               
+            }
+           // console.log('Image URL:', image);
+           // console.log(gameData)
+            return newDetailDog
         } else{    //! sino contiene el - hacemos la consuta de la API y traemos la informacion
             const { data } = await axios.get(url)
             res = data.find((ele)=> ele.id == id)
@@ -32,3 +49,4 @@ const dogsByIdRace = async (id) => {
     }
 }
 module.exports = dogsByIdRace
+

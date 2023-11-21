@@ -77,7 +77,100 @@
 
 
 
-//? CODIGO QUE FUNCIONA
+// //? CODIGO QUE FUNCIONA CON ALGUNOS ERRORES
+
+// import style from "./Filters.module.css";
+// import { useDispatch, useSelector } from "react-redux";
+// import { filterDogs } from "../../redux/actions";
+
+// export default function Filters() {
+//   // GLOBAL STATES
+
+//   const dispatch = useDispatch();
+//   const allDogs = useSelector((state) => state.allDogs);
+//   const temperaments = useSelector((state) => state.temperaments);
+
+//   // HELPERS
+
+//   let anyCreated = false;
+//   allDogs.forEach((dog) => {
+//     if (dog.created) anyCreated = true;
+//   });
+
+//   let count = 1
+
+//   // Obtener nombres únicos de temperamentos
+//   const uniqueTemperaments = Array.from(new Set(temperaments.map(t => t.name)));
+
+//   // HANDLERS
+
+//   function handleChange(event) {
+//     const originFilter = document.getElementsByName("origin")[0].value;
+//     const temperamentFilter = document.getElementsByName("temperaments")[0].value;
+    
+
+//     if (originFilter === "All" || temperamentFilter === "All") {
+//       let value = null;
+//       let name = null;
+//       if (originFilter === "All") {
+//         value = temperamentFilter;
+//         name = "temperaments";
+//       }
+//       if (temperamentFilter === "All") {
+//         value = originFilter;
+//         name = "origin";
+//       }
+
+
+//       dispatch(filterDogs(value, name));
+//     } else if (event.target.name === "temperaments" && originFilter !== "All") {
+//       dispatch(filterDogs(event.target.value, "temperaments",  originFilter, sourceFilter));
+//     } else {
+//       dispatch(filterDogs(event.target.value, "origin", temperamentFilter, sourceFilter));
+//     }
+
+//     sessionStorage.setItem(event.target.name, event.target.value);
+//   }
+
+
+
+
+
+//   // RENDER
+//   return (
+//     <div className={style.filterContainer}>
+//       <select
+//         onChange={handleChange}
+//         name="origin"
+//         defaultValue={sessionStorage.getItem("origin") || "All Dogs"}
+//         className={style.name}
+//       >
+//         <option value="All">All Dogs</option>
+        
+
+//         {anyCreated ? <option value="Listed">Api Dogs</option> : null}
+//         {anyCreated ? <option value="Created">Db Dogs</option> : null}
+//       </select>
+//       <select
+//         onChange={handleChange}
+//         name="temperaments"
+//         defaultValue={sessionStorage.getItem("temperaments") || "All"}
+//         className={style.origin}
+//       >
+//         <option value="All">All</option>
+        
+//         {uniqueTemperaments.map((temperament, index) => (
+//           <option key={index} value={temperament}>
+//             {temperament}
+//           </option>
+//         ))}
+//       </select>
+//     </div>
+//   );
+// }
+
+
+//! FUNCIONA FILTRADO SIN ERRORES FALTA FILTRADO DE TEMP a LOS DOS DE BD
 
 import style from "./Filters.module.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -97,44 +190,40 @@ export default function Filters() {
     if (dog.created) anyCreated = true;
   });
 
-  let count = 1
-
   // Obtener nombres únicos de temperamentos
-  const uniqueTemperaments = Array.from(new Set(temperaments.map(t => t.name)));
+  const uniqueTemperaments = Array.from(new Set(temperaments.map((t) => t.name)));
 
   // HANDLERS
 
   function handleChange(event) {
     const originFilter = document.getElementsByName("origin")[0].value;
-    const temperamentFilter =
-      document.getElementsByName("temperaments")[0].value;
+    const temperamentFilter = document.getElementsByName("temperaments")[0].value;
 
     if (originFilter === "All" || temperamentFilter === "All") {
       let value = null;
       let name = null;
+
       if (originFilter === "All") {
         value = temperamentFilter;
         name = "temperaments";
       }
+
       if (temperamentFilter === "All") {
         value = originFilter;
         name = "origin";
       }
 
-
       dispatch(filterDogs(value, name));
+    } else if (event.target.name === "temperaments" && originFilter === "All") {
+      dispatch(filterDogs(temperamentFilter, "temperaments"));
     } else if (event.target.name === "temperaments" && originFilter !== "All") {
-      dispatch(filterDogs(event.target.value, "temperaments",  originFilter, sourceFilter));
+      dispatch(filterDogs(originFilter, "origin", temperamentFilter));
     } else {
-      dispatch(filterDogs(event.target.value, "origin", temperamentFilter, sourceFilter));
+      dispatch(filterDogs(originFilter, "origin", temperamentFilter));
     }
 
     sessionStorage.setItem(event.target.name, event.target.value);
   }
-
-
-
-
 
   // RENDER
   return (
@@ -146,8 +235,6 @@ export default function Filters() {
         className={style.name}
       >
         <option value="All">All Dogs</option>
-        
-
         {anyCreated ? <option value="Listed">Api Dogs</option> : null}
         {anyCreated ? <option value="Created">Db Dogs</option> : null}
       </select>
@@ -158,7 +245,6 @@ export default function Filters() {
         className={style.origin}
       >
         <option value="All">All</option>
-        
         {uniqueTemperaments.map((temperament, index) => (
           <option key={index} value={temperament}>
             {temperament}
@@ -168,4 +254,3 @@ export default function Filters() {
     </div>
   );
 }
-
