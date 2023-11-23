@@ -50,9 +50,9 @@ export default function SearchBar() {
             dispatch(addAll());
             document.getElementById("input").value = "";
           }}
-          className={style.Xbutton}
+          className={style.Xbutton} 
         />
-      ) : null}
-    </div>
+      ) : null }
+      </div>
   );
 }

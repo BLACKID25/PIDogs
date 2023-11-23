@@ -124,9 +124,9 @@
 
 //       dispatch(filterDogs(value, name));
 //     } else if (event.target.name === "temperaments" && originFilter !== "All") {
-//       dispatch(filterDogs(event.target.value, "temperaments",  originFilter, sourceFilter));
+//       dispatch(filterDogs(event.target.value, "temperaments",  originFilter));
 //     } else {
-//       dispatch(filterDogs(event.target.value, "origin", temperamentFilter, sourceFilter));
+//       dispatch(filterDogs(event.target.value, "origin", temperamentFilter));
 //     }
 
 //     sessionStorage.setItem(event.target.name, event.target.value);
@@ -196,12 +196,15 @@ export default function Filters() {
   // HANDLERS
 
   function handleChange(event) {
-    const originFilter = document.getElementsByName("origin")[0].value;
-    const temperamentFilter = document.getElementsByName("temperaments")[0].value;
+    // const originFilter = document.getElementsByName("origin")[0].value;
+    // const temperamentFilter = document.getElementsByName("temperaments")[0].value;
+
+    const originFilter = event.target.name === "origin" ? event.target.value : document.getElementsByName("origin")[0].value;
+    const temperamentFilter = event.target.name === "temperaments" ? event.target.value : document.getElementsByName("temperaments")[0].value;
 
     if (originFilter === "All" || temperamentFilter === "All") {
-      let value = null;
       let name = null;
+      let value = null;
 
       if (originFilter === "All") {
         value = temperamentFilter;
@@ -215,7 +218,15 @@ export default function Filters() {
 
       dispatch(filterDogs(value, name));
     } else if (event.target.name === "temperaments" && originFilter === "All") {
-      dispatch(filterDogs(temperamentFilter, "temperaments"));
+      // Filtrar por nombre de temperamento solo para los perros de la base de datos
+      const filteredTemperaments = allDogs
+        .filter((dog) => dog.created) // Filtrar solo perros de la base de datos
+        .reduce((acc, dog) => {
+          return acc.concat(dog.Temps.map((temp) => temp.name));
+        }, []);
+
+        
+      dispatch(filterDogs(filteredTemperaments, "temperaments"));
     } else if (event.target.name === "temperaments" && originFilter !== "All") {
       dispatch(filterDogs(originFilter, "origin", temperamentFilter));
     } else {
@@ -224,6 +235,9 @@ export default function Filters() {
 
     sessionStorage.setItem(event.target.name, event.target.value);
   }
+
+
+
 
   // RENDER
   return (
@@ -235,8 +249,8 @@ export default function Filters() {
         className={style.name}
       >
         <option value="All">All Dogs</option>
-        {anyCreated ? <option value="Listed">Api Dogs</option> : null}
-        {anyCreated ? <option value="Created">Db Dogs</option> : null}
+        {anyCreated ? <option value="Api">Api Dogs</option> : null}
+        {anyCreated ? <option value="Db">Db Dogs</option> : null}
       </select>
       <select
         onChange={handleChange}
@@ -248,6 +262,7 @@ export default function Filters() {
         {uniqueTemperaments.map((temperament, index) => (
           <option key={index} value={temperament}>
             {temperament}
+            
           </option>
         ))}
       </select>

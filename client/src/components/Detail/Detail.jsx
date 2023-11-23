@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import bckDog from "../../content/sampleDog.svg";
-import Loading from "../Loading/Loading";
+import Loading from "../Loading/Cargando";
 import { addAll } from "../../redux/actions";
 import Edit from "./Edit/Edit";
 

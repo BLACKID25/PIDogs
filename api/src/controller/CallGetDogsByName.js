@@ -3,19 +3,27 @@ const axios = require("axios")
 const {Dog, Temp} = require("../db")
 const dataApi = require("../help/dataApi")
 const {KEY_API_DOGS} = process.env
+const { Op } = require('sequelize')
 const url = `https://api.thedogapi.com/v1/breeds?api_key=${KEY_API_DOGS}`
 
 
 const dogsByName = async (name) => {
 
-       // console.log("Name que llega del handleName es:", name)
+    console.log("Name que llega del handleName es:", name)
+    name = name.toLowerCase();
+    console.log("Este es el nuevo name", name)
     try {
         
         //!busqueda en la BD
         const dogDB = await Dog.findAll({
-            where:{
-                name
-            },
+            //establece las condiciones para la búsqueda. En este caso, se busca en la columna name de la tabla Videogame
+    where: {
+        name: {
+          [Op.iLike]: name.toLowerCase(),//Esto especifica que se busca un registro donde el valor de la columna name coincida con el nombre
+          // proporcionado en minúsculas y de manera insensible a mayúsculas y minúsculas. 
+          //Op.iLike es un operador de Sequelize que realiza búsquedas insensibles a mayúsculas y minúsculas.
+        },
+      },
             include:[
                 { 
                     model:Temp,

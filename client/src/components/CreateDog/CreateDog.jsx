@@ -117,18 +117,6 @@ export default function CreateDog() {
         <h1>Create your own dog!</h1>
 
 
-        <fieldset className={style.temperaments}>
-        <div className={style.tempContainer}>
-               <legend>Temperaments: </legend>
-              <select id="temperament" onChange={handleTemperamentChange} multiple>
-                {temperaments.map((temp, index) => (
-                  <option key={index} value={temp.name}>
-                    {temp.name}
-                  </option>
-                ))}
-              </select>
-            </div>
-        </fieldset>
 
 
 
@@ -175,10 +163,33 @@ export default function CreateDog() {
             <p>{errors.image}</p>
           </div>
 
+        <fieldset className={style.temperaments}>
+        <div className={style.tempContainer}>
+               <legend>Temperaments: </legend>
+              <select id="temperament" onChange={handleTemperamentChange} multiple>
+                {temperaments.map((temp, index) => (
+                  <option key={index} value={temp.name}
+                  type="checkbox">
+                    {temp.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+        </fieldset>
+
+        {dogToPost.temperament.length < 3 ? (
+            <p style={{ height: `1em`, alignSelf: `center` }}>
+              * Debe Seleccionar al menos 1 elemento
+            </p>
+          ) : (
+            <p style={{ height: `1em` }}></p>
+          )}
+
+
           <div className={style.buttonCont}>
-            {errors.message ? (
+          {errors.message || dogToPost.temperament.length < 3 ? (
               <button type="submit" disabled>
-                Submit
+                Crear Dog
               </button>
             ) : (
               <button type="submit">Submit</button>

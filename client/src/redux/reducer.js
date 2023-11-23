@@ -5,7 +5,7 @@ import {
   SEARCH_DOG,
   SLICE_DOGS,
   UPDATE_TEMPERAMENTS,
-  //FILTER_BY_ORIGIN
+
 } from "./action-types";
 import { sliceArray, sortingByName, sortingByWeight } from "../helpers";
 
@@ -59,28 +59,43 @@ export default function reducer(state = initialState, action) {
 
       case FILTER_DOGS:
         const { filter, type, secondFilter, sourceFilter } = payload;
+        const normalizeTemperaments = (dog) => {
+          // Normaliza la propiedad de temperamentos para un acceso consistente
+          const tempArray = dog.Temps || dog.temperament || [];
+          return tempArray.map((temp) => {
+            if (typeof temp === 'string') {
+              return temp.toLowerCase();
+            } else if (typeof temp === 'object' && temp.name) {
+              return temp.name.toLowerCase();
+            } else {
+              return '';
+            }
+          });
+        };
+
         let filtered = [];
-        if (!secondFilter) {
+          if (!secondFilter) {
           if (type === "origin") {
             if (filter === "All") {
               filtered = state.allDogs;
-            }
-            if (filter === "Created") {
+            } else if (filter === "Db") {
               filtered = state.allDogs.filter((dog) => dog.created);
-            }
-            if (filter === "Listed") {
+            } else if (filter === "Api") {
               filtered = state.allDogs.filter((dog) => !dog.created);
             }
-          }
-          if (type === "temperaments") {
-            if (filter === "All") filtered = state.allDogs;
-            else {
-              filtered = state.allDogs.filter((dog) =>
-                dog.temperament?.includes(filter)
-              );
+          } else if (type === "temperaments") {
+            if (filter === "All") {
+              filtered = state.allDogs;
+            } else {
+              filtered = state.allDogs.filter((dog) => {
+                const newf = filter.toLowerCase()
+                const dogTemperaments = normalizeTemperaments(dog);
+                return dogTemperaments.some((temp) => temp.includes(newf));
+              });
             }
           }
         } else {
+          
           if (type === "origin") {
             let firstFilter = state.allDogs.filter((dog) =>
               dog.temperament?.includes(secondFilter)
@@ -88,19 +103,21 @@ export default function reducer(state = initialState, action) {
             if (filter === "All") {
               filtered = firstFilter;
             }
-            if (filter === "Created") {
+            if (filter === "Db") {
               filtered = firstFilter.filter((dog) => dog.created);
             }
-            if (filter === "Listed") {
+            if (filter === "Api") {
               filtered = firstFilter.filter((dog) => !dog.created);
             }
           }
+
+
           if (type === "temperaments") {
             let firstFilter = [];
-            if (secondFilter === "Created") {
+            if (secondFilter === "Db") {
               firstFilter = state.allDogs.filter((dog) => dog.created);
             }
-            if (secondFilter === "Listed") {
+            if (secondFilter === "Api") {
               firstFilter = state.allDogs.filter((dog) => !dog.created);
             }
             if (filter === "All") filtered = firstFilter;

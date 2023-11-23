@@ -1,24 +1,24 @@
 import StyledHome from "./home.module.css";
 import { DogCards, Filters, SearchBar } from "../index.components";
 import { NavLink } from "react-router-dom";
-import homeDog from "../../content/homeDog.svg";
+import logo from "../../content/LOGO NUEVO.png";
 import { useEffect, useState } from "react";
-import Loading from "../Loading/Loading";
+import Cargando from "../Loading/Cargando";
 import { useSelector } from "react-redux";
 
 export default function Home() {
+  
+  const dataDog = useSelector((state) => state.allDogs);
+  
   // LOCAL STATES
-
-  const [loading, setLoading] = useState(null);
-
-  const appData = useSelector((state) => state.allDogs);
+  const [cargando, setcargando] = useState(null);
 
   useEffect(() => {
-    if (!appData.length) {
-      setLoading(true);
+    if (!dataDog.length) {
+      setcargando(true);
       setTimeout(() => {
-        setLoading(false);
-      }, 2000);
+        setcargando(false);
+      }, 2500);
     }
   }, []);
 
@@ -26,16 +26,19 @@ export default function Home() {
 
   return (
     <div className={StyledHome.homeMain}>
-      {loading ? <Loading className={StyledHome.loading} /> : null}
       <div className={StyledHome.mainImage}>
-        <img src={homeDog} alt="homeImage" />
+    {cargando ? <Cargando className={StyledHome.loading} /> : null}
+        <img src= {logo} alt="homeImage" />
       </div>
       <div className={StyledHome.supBar}>
+        <NavLink to="/" className={StyledHome.createButton}>
+          <p> Regresar </p>
+        </NavLink>
         <NavLink to="/createDog" className={StyledHome.createButton}>
-          <p>Create you Dog</p>
+          <p>Crear Dogs</p>
         </NavLink>
         <Filters />
-        <SearchBar />
+      <SearchBar />
       </div>
       <DogCards />
     </div>

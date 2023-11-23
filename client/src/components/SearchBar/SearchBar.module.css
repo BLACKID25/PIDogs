@@ -15,9 +15,9 @@
 }
 
 .searchContainer {
-  position: relative;
+
   left: 100px;
-  height: 3rem;
+  height: 1.5rem;
   display: flex;
   flex-direction: row;
   width: 12%;
@@ -25,12 +25,12 @@
 }
 
 .Xbutton {
-  position: absolute;
-  left: 102%;
+  
+  left: 105%;
   top: 20%;
-  background: url("../../content/cancelX.svg") no-repeat;
-  background-size: contain;
-  height: 2em;
+  background: url("https://cdn-icons-png.flaticon.com/512/70/70091.png") no-repeat;
+  background-size:100%;
+  height: 3em;
   width: 2em;
   border: 0;
   &:hover {
@@ -41,10 +41,10 @@
 
 .searchButton {
   position: absolute;
-  top: 0.5em;
+  top: 14.4em;
   width: 2em;
-  height: 2em;
-  background: url("../../content/search.svg") no-repeat;
+  height: 3em;
+  background: url("https://opashka.com/wp-content/themes/opashka/images/paw-loading.gif") no-repeat;
   background-size: contain;
   &:hover {
     cursor: pointer;

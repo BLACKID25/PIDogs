@@ -74,7 +74,7 @@ export default function DogCard(props) {
       return <p>Temperamentos: {temperamentArray.join(", ")}</p>;
     }
 
-    return null; // No hay temperamentos disponibles
+    return "No add temperamet"; // No hay temperamentos disponibles
   };
 
   return (
@@ -91,6 +91,8 @@ export default function DogCard(props) {
         <div className={StyledCard.infoCont}>
           <Link to={`/detail/${props.dog.id}`}>
             <h1>{props.dog.name}</h1>
+            <h1>{props.dog.id}</h1>
+            
             {renderTemperaments()}
             <div className={StyledCard.weight}>
               <img src={weightIMG} alt="" />

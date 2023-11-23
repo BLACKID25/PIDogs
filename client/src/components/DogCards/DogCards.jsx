@@ -181,12 +181,11 @@ import { DogCard, Ordering, Pagination } from "../index.components";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { sliceDogs } from "../../redux/actions";
-import splashbckg from "../../content/bckgSplash.svg";
+
 
 export default function DogCards() {
   // LOCAL STATES
-  //* The || statement loads sessionStorage info or the default. This so when ppl comes back from detail or create
-  //* can return to the page they were.
+
   const [currentPage, setPage] = useState(
     Number(sessionStorage.getItem("currentPage")) || 1
   );
@@ -228,7 +227,7 @@ export default function DogCards() {
 
   return (
     <div className={StyledCards.CardsContainer}>
-      <img src={splashbckg} alt="" className={StyledCards.splashIMG} />
+      <img  src="https://static.vecteezy.com/system/resources/previews/008/291/069/original/dog-paw-seamless-pattern-bone-dog-footprint-pattern-cartoon-tile-fancy-cream-background-repeat-scarf-isolated-illustration-gift-or-wrapping-paper-puppy-texture-vector.jpg" className={StyledCards.splashIMG} />
       <div className={StyledCards.pages_order} id="navbar">
         <Ordering />
         <Pagination

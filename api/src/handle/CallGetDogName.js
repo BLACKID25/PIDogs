@@ -10,7 +10,7 @@ const dogNames = async(req, res) =>{
             // La consulta se realizó mediante parámetros de consulta
             const dogName = req.query.name;
             //const data = await dogsByName(dogName);
-            //console.log(name)
+            console.log(dogName)
             if(!dogName){
                 return res.status(401).json({message: "Debe ingresar un nombre de Dog"})
             }
