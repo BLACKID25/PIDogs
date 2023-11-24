@@ -224,7 +224,7 @@ export default function Filters() {
         .reduce((acc, dog) => {
           return acc.concat(dog.Temps.map((temp) => temp.name));
         }, []);
-
+        console.log(first)
         
       dispatch(filterDogs(filteredTemperaments, "temperaments"));
     } else if (event.target.name === "temperaments" && originFilter !== "All") {

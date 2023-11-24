@@ -8,7 +8,7 @@ export default function validateForm(input) {
   let objectToReturn = {};
   if (!regExName.test(input.name)) {
     objectToReturn.name =
-      "Name must contain only letters, no special characters nor numbers";
+      "Ingrese solo letras, sin números ni caracteres especiales ";
   }
   validatorHelper(
     "height",
@@ -35,7 +35,7 @@ export default function validateForm(input) {
     "Life expectancy"
   );
   if (!regExURL.test(input.image)) {
-    objectToReturn.image = "The image URL is not valid";
+    objectToReturn.image = "La URL ingresada no es valida";
   }
 
   let anyError = false;
@@ -45,7 +45,7 @@ export default function validateForm(input) {
   if (anyError)
     return {
       ...objectToReturn,
-      message: "Complete corrently all information to submit a dog",
+      message: "Complete correctamente toda la información",
     };
   else return { message: "" };
 }

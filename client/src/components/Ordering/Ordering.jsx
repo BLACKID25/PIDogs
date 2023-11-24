@@ -12,7 +12,7 @@ export default function Ordering() {
   return (
     <div className={style.orderContainer}>
       <div className={style.nameOrder}>
-        <p>Name</p>
+        <p>Ordenar</p>
         <button
           name="name"
           value="asc"
@@ -27,7 +27,7 @@ export default function Ordering() {
         ></button>
       </div>
       <div className={style.weightOrder}>
-        <p>Weight</p>
+        <p>Peso</p>
         <button
           name="weight"
           value="asc"

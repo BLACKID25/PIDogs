@@ -71,10 +71,10 @@ export default function DogCard(props) {
         ? temperament
         : temperament.split(", ");
 
-      return <p>Temperamentos: {temperamentArray.join(", ")}</p>;
-    }
+        return <p> Temperamentos:  {temperamentArray.join(", ")}</p>;
+      }
 
-    return "No add temperamet"; // No hay temperamentos disponibles
+    return "Sin temperamentos asignados"; // No hay temperamentos disponibles
   };
 
   return (
@@ -83,19 +83,19 @@ export default function DogCard(props) {
         <div className={StyledCard.imageCont}>
           <img
             src={props.dog.image}
-            alt={props.dog.name}
             id="mainIMG"
             onError={handleError}
           />
         </div>
         <div className={StyledCard.infoCont}>
           <Link to={`/detail/${props.dog.id}`}>
-            <h1>{props.dog.name}</h1>
-            <h1>{props.dog.id}</h1>
+            <h1> Name: {props.dog.name}</h1>
+            {/* <h1> Id: {props.dog.id}</h1> */}
+           
             
             {renderTemperaments()}
             <div className={StyledCard.weight}>
-              <img src={weightIMG} alt="" />
+              <img src="https://us.123rf.com/450wm/puruan/puruan2205/puruan220501374/185797616-icono-de-escala-de-peso-animal-veterinario-ilustraci%C3%B3n-vectorial-dibujada-a-mano-trazo-de-l%C3%ADnea.jpg?ver=6" alt="" />
               <h2>{props.dog.weight}</h2>
             </div>
           </Link>

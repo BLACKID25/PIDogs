@@ -6,10 +6,10 @@
 .pageContainer {
   display: flex;
   flex-direction: row;
-  width: 70%;
+  width: 80%;
   height: 2rem;
   justify-content: center;
-  --arrow-normal: url("../../content/arrowDown.svg");
+ 
   align-self: center;
 }
 
@@ -17,16 +17,16 @@
   display: flex;
   flex-direction: row;
   position: absolute;
-  left: 78%;
+  left: 75%;
   height: 2rem;
   align-items: center;
-  gap: 2rem;
+  gap: 1rem;
   width: 15%;
 }
 
 .postSelector p {
-  margin: 0;
-  height: 1.5rem;
+  
+  height: 1.8rem;
   width: 100%;
   font-family: "Custom";
 }
@@ -37,11 +37,11 @@
   appearance: none;
   border: 0;
   outline: 0;
-  width: 5em;
+  width: 4em;
   background-color: inherit;
   color: black;
   border-radius: 2em;
-  padding-left: 1em;
+  padding-left: 1.3em;
   box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.2);
   cursor: pointer;
   background: var(--arrow-normal) no-repeat;
@@ -75,7 +75,7 @@
   border: 2.5px black solid;
   border-radius: 50%;
   &:hover {
-    background-color: rgb(47, 144, 255);
+    background-color: rgb(47, 255, 78);
     cursor: pointer;
   }
   font-family: "Custom";
@@ -96,7 +96,7 @@
 .next {
   height: 2rem;
   width: 2rem;
-  background: url("../../content/prev-next.svg") no-repeat;
+  background: url("https://cdn-icons-png.flaticon.com/512/60/60546.png") no-repeat;
   background-size: contain;
   &:hover {
     transform: scale(1.05);

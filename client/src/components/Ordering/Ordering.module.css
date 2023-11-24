@@ -41,21 +41,21 @@
 }
 
 .ascNameButton {
-  background: url("../../content/az-sort.svg") no-repeat;
+  background: url("https://cdn-icons-png.flaticon.com/512/31/31232.png") no-repeat;
   background-size: contain;
 }
 
 .descNameButton {
-  background: url("../../content/za-sort.svg") no-repeat;
+  background: url("https://cdn-icons-png.flaticon.com/512/30/30859.png") no-repeat;
   background-size: contain;
 }
 
 .ascWButton {
-  background: url("../../content/weight-up.svg") no-repeat;
+  background: url("https://cdn-icons-png.flaticon.com/512/4305/4305513.png") no-repeat;
   background-size: 100%;
 }
 
 .descWButton {
-  background: url("../../content/weight-down.svg") no-repeat;
+  background: url("https://cdn-icons-png.flaticon.com/512/69/69656.png") no-repeat;
   background-size: 96.27%;
 }

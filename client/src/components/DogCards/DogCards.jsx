@@ -206,6 +206,8 @@ export default function DogCards() {
     ? document.getElementById("navbar")
     : {};
   let sticky = 315; // Set this to const as when comp reloads offset will be 0 and will keep It sticky.
+  
+  //! permite dejar la barra fija cuando haces scroll a la pagina 
   window.onscroll = function () {
     if (window.scrollY >= sticky) {
       navbar.className = `${StyledCards.stickyNav}`;

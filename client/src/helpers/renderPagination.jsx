@@ -10,9 +10,9 @@ export default function renderPagination(
   if (TotalPages > 7) {
     return (
       <div className={style.pageContainer}>
-        <p className={style.current}>Page: {localState}</p>
+        <p className={style.current}>Página {localState}</p>
         <div className={style.postSelector}>
-          <p>Dogs per page: </p>
+          <p>Dogs a mostrar</p>
           <select
             defaultValue={
               sessionStorage.getItem("visiblePosts") || visiblePosts
@@ -20,8 +20,8 @@ export default function renderPagination(
             onChange={functionPosted}
           >
             <option value="8">8</option>
-            <option value="10">10</option>
-            <option value="20">20</option>
+            <option value="12">12</option>
+            <option value="16">16</option>
           </select>
         </div>
         <div className={style.Pages}>
@@ -73,7 +73,7 @@ export default function renderPagination(
     return (
       <div className={style.pageContainer}>
         <div className={style.postSelector}>
-          <p>Dogs per page: </p>
+          <p>Dogs a mostrar </p>
           <select
             defaultValue={
               sessionStorage.getItem("visiblePosts") || visiblePosts
@@ -81,8 +81,8 @@ export default function renderPagination(
             onChange={functionPosted}
           >
             <option value="8">8</option>
-            <option value="10">10</option>
-            <option value="20">20</option>
+            <option value="12">12</option>
+            <option value="16">16</option>
           </select>
         </div>
         <div className={style.Pages}>
@@ -101,16 +101,16 @@ export default function renderPagination(
     return (
       <div className={style.pageContainer}>
         <div className={style.postSelector}>
-          <p>Dogs per page: </p>
+          <p>Dogs a mostrar </p>
           <select
             defaultValue={
               sessionStorage.getItem("visiblePosts") || visiblePosts
             }
             onChange={functionPosted}
           >
-            <option value="8">8</option>
-            <option value="10">10</option>
-            <option value="20">20</option>
+           <option value="8">8</option>
+            <option value="12">12</option>
+            <option value="16">16</option>
           </select>
         </div>
         <div className={style.Pages}>

@@ -22,7 +22,7 @@
   flex-direction: row;
   justify-content: space-between;
   height: 5rem;
-  background-color: #c9e3ecbb;
+  background-color: #e6ff5abb;
   backdrop-filter: blur(10px);
   box-shadow: -1px 15px 26px -25px rgba(0, 0, 0, 0.59);
 }
@@ -45,7 +45,7 @@
   flex-direction: row;
   justify-content: space-between;
   height: 5rem;
-  background-color: #e4f0ffb9;
+  background-color:  #e6ff5abb;
   backdrop-filter: blur(10px);
   box-shadow: -1px 15px 26px -25px rgba(0, 0, 0, 0.59);
 }

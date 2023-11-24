@@ -1,28 +1,28 @@
 .filterContainer {
-  height: 3rem;
+  height: 1rem;
   display: flex;
   flex-direction: row;
   align-items: center;
   position: relative;
-  left: 55px;
-  --arrow-normal: url("../../content/arrowDown.svg");
+  left: 0px;
+  --arrow-normal: url("https://cdn-icons-png.flaticon.com/512/1287/1287105.png");
 }
 
 .filterContainer select {
-  height: 2em;
+  height: 3em;
   font-family: "Custom";
   appearance: none;
-  border: 0;
+  border: 25;
   outline: 0;
   background-color: inherit;
   color: black;
-  border-radius: 2em;
+  border-radius: 4em;
   padding-left: 1em;
-  box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0);
   cursor: pointer;
   background: var(--arrow-normal) no-repeat;
   background-position: 90% 50%;
-  background-size: 10%;
+  background-size: 15%;
   &::-ms-expand {
     display: none;
   }
@@ -38,8 +38,8 @@
 
 .name {
   position: relative;
-  right: 2em;
-  width: 10em;
+  right: 5em;
+  width: 12em;
 }
 
 .origin {

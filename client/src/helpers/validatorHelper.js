@@ -7,10 +7,10 @@ export default function validatorHelper(
   name
 ) {
   if (!regex.test(minprop) || !regex.test(maxprop)) {
-    obj[propName] = `${name} only receives positive valid numbers`;
+    obj[propName] = `${name} Ingrese solo números positivos`;
   } else {
     if (Number(minprop) > Number(maxprop)) {
-      obj[propName] = `${name} max value has to be lower than min value`;
+      obj[propName] = `${name} Valor máximo debe ser superior al minimo`;
     }
   }
   return obj;
